@@ -1,0 +1,9 @@
+# robots.txt generated at http://www.mcanerin.com
+User-agent: *
+Disallow: /demos/
+Disallow: /smarty/
+Disallow: /assets/
+Disallow: /chedder/
+Disallow: /images/
+Disallow: /smarty/
+Sitemap: http://www.grownsmall.com/sitemap.php

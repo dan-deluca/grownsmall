@@ -1,0 +1,39 @@
+
+
+$client = new CheddarGetter_Client(
+	'https://cheddargetter.com/',
+	'dandeluca@mac.com',
+	'97a946ee7c261ae8333d271767ab2d4b',
+	'GROWNSMALL'
+);
+
+	try {
+		$response = $client->deleteCustomer('TEST_CUSTOMER000');
+		echo "\n\tDeleted Milton Waddams\n";
+	} catch (Exception $e) {}
+
+$data = array(
+	'code'      => 'TEST_CUSTOMER000',
+	'firstName' => 'Example',
+	'lastName'  => 'Customer',
+	'email'     => 'example_customer@example.com',
+	'subscription' => array(
+		'planCode'      => 'FIVE_PERCENT',
+		'ccFirstName'   => 'Example',
+		'ccLastName'    => 'Customer',
+		'method'			=> 'paypal',
+		'returnUrl'      => 'http://www.grownsmall.com/login.php',
+		'cancelUrl'  => 'http://www.grownsmall.com/',
+	)
+);
+$customer = $client->newCustomer($data);
+$xml = new SimpleXMLElement($customer);
+//echo "<pre>";
+//print_r($xml);
+//echo "</pre>";
+//echo"<hr>";
+$redirectUrl = $xml->customer->subscriptions->subscription->redirectUrl;
+ header('Location: '.$redirectUrl);
+ 
+ 
+ 
